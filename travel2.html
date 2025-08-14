@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Travel Explorer</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+</head>
+<body>
+
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <div class="logo">BT</div>
+        <div>
+          <div class="brand-name">BonTrip</div>
+          <div class="tagline">Your adventure starts here</div>
+        </div>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="#destinations">Destinations</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <button id="hamburger" aria-label="Toggle menu" aria-expanded="false">☰</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+  <video autoplay muted loop playsinline class="hero-video">
+    <source src="vedio.trav.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+
+  <div class="hero-content">
+    <h1>Explore the world's best places</h1>
+    <p>Curated trips, local guides, and smart deals — all in one place. Discover, plan, and travel with confidence.</p>
+    <button id="bookBtn" class="btn">Book a Trip</button>
+  </div>
+</section>
+
+
+    <section id="destinations" class="section">
+      <h2 class="dest">Popular Destinations</h2>
+      <div id="destGrid" class="grid"></div>
+    </section>
+
+    <h2 class="gal">Gallery</h2>
+    <section id="gallery"></section>
+    <section  class="gallery-section">
+    <div class="gallery">
+        <img src="image 1 1.jpg" alt="Image 1">
+        <img src="image2.jpg" alt="Image 2">
+        <img src="image3.jpg" alt="Image 3">
+        <img src="image4.jpg" alt="Image 4">
+        <img src="image5.jpg" alt="Image 5">
+        <img src="image 6.jpg" alt="Image 6">
+        <img src="image 7.jpg" alt="Image 7">
+        <img src="image 8.8.jpg" alt="Image 8">
+        <img src="image.9.jpg" alt="Image 9">
+        <img src="image 10.jpg" alt="Image 10">
+        <img src="image 11.jpg" alt="Image 11">
+        <img src="image 12.jpg" alt="Image 12">
+        <img src="image 13.jpg" alt="Image 13">
+        <img src="image 14.jpg" alt="Image 14">
+        <img src="image 15.jpg" alt="Image 15">
+        <img src="image 16.jpg" alt="Image 16">
+        <img src="image 17.jpg" alt="Image 17">
+        <img src="image 18.jpg" alt="Image 18">
+        <img src="image 19.jpg" alt="Image 19">
+        <img src="image 20.jpg" alt="Image 20">
+    </div>
+    <div class="gallery-dots"></div>
+</section>
+
+
+    <section id="about" class="section">
+      <h2 class="abus">About Us</h2>
+      <section class="about-us" id="about">
+  <div class="about-container">
+    <!-- Image Side -->
+    <div class="about-image">
+      <img src="image 8.jpg" alt="About Our Travel Agency">
+    </div>
+
+    <!-- Text Side -->
+    <div class="about-text">
+      <h3 class="adv">Adventure Awaits You</h3>
+      <p>
+        At Bontrip Adventures, we believe travel is more than just reaching a destination — 
+        it’s about the memories you create along the way. Our dedicated team curates personalized 
+        travel experiences tailored to your preferences, whether it’s a peaceful escape, 
+        an adrenaline-fueled adventure, or a cultural exploration.
+      </p>
+      <ul>
+        <li>🌍 Customized Travel Plans</li>
+        <li>💼 Expert Guidance & 24/7 Support</li>
+        <li>🏞️ Access to Hidden Gems</li>
+        <li>✈️ Hassle-Free Booking</li>
+      </ul>
+      <a href="#destinations" class="about-btn">Explore Destinations</a>
+    </div>
+  </div>
+</section>
+
+
+    </section>
+
+    <section id="contact" class="section">
+      <h2 class="conus">Contact Us</h2>
+      <form id="contactForm">
+        <input type="text" name="name" placeholder="Your name" required />
+        <input type="email" name="email" placeholder="Your email" required />
+        <textarea name="message" placeholder="Your message" required></textarea>
+        <button type="submit" class="btn">Send Message</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; <span id="year"></span> Travel Explorer. All rights reserved.</p>
+  </footer>
+
+  <!-- Booking Modal -->
+  <div id="modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-content">
+      <h3 id="modalTitle">Book Your Trip</h3>
+      <form id="bookingForm">
+        <input type="text" name="bname" placeholder="Full Name" required />
+        <input type="email" name="bemail" placeholder="Email" required />
+        <select name="bdestination" required>
+          <option value="" disabled selected>Select Destination</option>
+           <option value="Paris">Paris</option>
+           <option value="Maldives">Maldives</option>
+            <option value="Tokyo">Tokyo</option>
+           <option value="Swiss alphs">Swiss alphs</option>
+          
+           
+        </select>
+        <input type="date" name="bdate" required />
+        <button type="submit" class="btn">Confirm Booking</button>
+        <button type="button" id="closeModal">Cancel</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // Data
+    const destinations = [
+      { id:1, name: "Paris", desc: "City of lights and love", img: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=800&q=80" },
+      { id: 2, name: "Maldives", desc: "Tropical paradise beaches", img: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80" },
+      { id: 3, name: "Tokyo", desc: "Modern city with traditional roots", img: "tok.jpg" },
+      { id: 4, name: "Swiss Alps", desc: "Snowy mountain adventures", img: "https://images.unsplash.com/photo-1482192505345-5655af888cc4?auto=format&fit=crop&w=800&q=80" },
+    ];
+
+    
+
+    // Elements
+    const destGrid = document.getElementById("destGrid");
+    const gallery = document.getElementById("gallery");
+    const bookingModal = document.getElementById("modal");
+    const bookingForm = document.getElementById("bookingForm");
+    const bookingDestinationSelect = bookingForm.querySelector("select[name='bdestination']");
+    const closeModalBtn = document.getElementById("closeModal");
+    const bookBtn = document.getElementById("bookBtn");
+    const hamburger = document.getElementById("hamburger");
+    const navUl = document.querySelector("nav ul");
+    const yearSpan = document.getElementById("year");
+    const contactForm = document.getElementById("contactForm");
+
+    // Initialize
+    yearSpan.textContent = new Date().getFullYear();
+
+    // Render Destinations
+    function renderDestinations() {
+      destGrid.innerHTML = "";
+      destinations.forEach(dest => {
+        const card = document.createElement("div");
+        card.className = "card";
+        card.innerHTML = `
+          <img src="${dest.img}" alt="${dest.name}" />
+          <h3>${dest.name}</h3>
+          <p>${dest.desc}</p>
+          <button class="btn book-destination" data-id="${dest.id}">Book Now</button>
+        `;
+        destGrid.appendChild(card);
+      });
+    }
+
+    // Render Gallery
+    function renderGallery() {
+  gallery.innerHTML = `
+    <div class="gallery-track"></div>
+  `;
+  const track = gallery.querySelector(".gallery-track");
+  galleryImages.forEach(src => {
+    const img = document.createElement("img");
+    img.src = src;
+    img.alt = "Travel gallery image";
+    track.appendChild(img);
+  });
+}
+
+
+    // Populate Booking Destinations dropdown
+    function populateBookingDestinations() {
+      bookingDestinationSelect.innerHTML = '<option value="" disabled selected>Select Destination</option>';
+      destinations.forEach(dest => {
+        const option = document.createElement("option");
+        option.value = dest.name;
+        option.textContent = dest.name;
+        bookingDestinationSelect.appendChild(option);
+      });
+    }
+
+    // Open modal
+    function openModal() {
+      bookingModal.classList.remove("hidden");
+      bookingModal.querySelector("input[name='bname']").focus();
+    }
+
+    // Close modal
+    function closeModal() {
+      bookingModal.classList.add("hidden");
+      bookingForm.reset();
+    }
+
+    // Toggle mobile nav
+    hamburger.addEventListener("click", () => {
+      const expanded = hamburger.getAttribute("aria-expanded") === "true" || false;
+      hamburger.setAttribute("aria-expanded", !expanded);
+      navUl.classList.toggle("open");
+    });
+
+    // Booking buttons
+    destGrid.addEventListener("click", e => {
+      if (e.target.classList.contains("book-destination")) {
+        openModal();
+        const id = e.target.dataset.id;
+        const dest = destinations.find(d => d.id == id);
+        bookingDestinationSelect.value = dest.name;
+      }
+    });
+
+    // Book trip button in hero
+    bookBtn.addEventListener("click", () => {
+      openModal();
+      bookingDestinationSelect.value = "";
+    });
+
+    // Close modal button
+    closeModalBtn.addEventListener("click", closeModal);
+
+    // Booking form submit
+    bookingForm.addEventListener("submit", e => {
+      e.preventDefault();
+      alert(`Thanks ${bookingForm.bname.value}! Your trip to ${bookingForm.bdestination.value} on ${bookingForm.bdate.value} is booked.`);
+      closeModal();
+    });
+
+    // Contact form submit
+    contactForm.addEventListener("submit", e => {
+      e.preventDefault();
+      alert("Thank you for contacting us! We'll get back to you soon.");
+      contactForm.reset();
+    });
+
+    // Close modal on click outside content
+    bookingModal.addEventListener("click", e => {
+      if (e.target === bookingModal) closeModal();
+    });
+
+    // ESC key closes modal
+    document.addEventListener("keydown", e => {
+      if (e.key === "Escape" && !bookingModal.classList.contains("hidden")) {
+        closeModal();
+      }
+    });
+
+    // Init
+    renderDestinations();
+    renderGallery();
+    populateBookingDestinations();
+    
+  </script>
+</body>
+</html>
